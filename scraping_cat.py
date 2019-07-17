@@ -11,6 +11,17 @@ html = urllib.request.urlopen(url)
 # htmlをBeautifulSoupで扱う
 soup = BeautifulSoup(html, "html.parser")
 
+div = soup.find_all("div")
+for tag in div:
+    try:
+        _string = tag.get("class").pop(0)
+
+        if _string in "row-eq-height":
+            cat_div = tag.string
+            break
+    except:
+        pass
+
 # タイトル要素を取得する
 title_tag = soup.title
 
@@ -22,3 +33,5 @@ print(title_tag)
 
 # タイトルを文字列を出力
 print(title)
+
+print(cat_div)
